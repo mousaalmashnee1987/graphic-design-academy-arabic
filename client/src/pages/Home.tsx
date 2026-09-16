@@ -21,8 +21,9 @@ import {
   Youtube,
 } from "lucide-react";
 
-const heroImage = "/manus-storage/midad-hero_0b00fcfc.jpg";
-const workshopImage = "/manus-storage/midad-workshop_553a6f6f.jpg";
+const assetBase = import.meta.env.BASE_URL;
+const heroImage = `${assetBase}assets/midad-hero.jpg`;
+const workshopImage = `${assetBase}assets/midad-workshop.jpg`;
 
 const tracks = [
   {
