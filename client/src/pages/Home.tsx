@@ -92,17 +92,33 @@ const foundationLessons = [
 
 const navItems = [
   { label: "المسارات", href: "#tracks" },
+  { label: "المستشار", href: "#advisor" },
   { label: "الأساسيات", href: "#foundations" },
   { label: "البرامج", href: "#software" },
   { label: "الدروس", href: "#lessons" },
   { label: "عن أكاديمية التصميم الجرافيكي", href: "#about" },
 ];
 
+const advisorQuestions = [
+  { key: "goal", label: "ما الذي تريد أن تصنعه أولًا؟", options: ["أريد أساسًا قويًا", "أريد بناء هوية", "أريد تصميمًا رقميًا"] },
+  { key: "experience", label: "كيف تصف مستواك؟", options: ["أبدأ من الصفر", "لدي بعض التجربة", "أعمل كمصمم"] },
+  { key: "mood", label: "ما الذي يحمّسك أكثر؟", options: ["فهم القواعد", "صناعة شخصية بصرية", "تجربة أفكار جديدة"] },
+];
+
+const advisorRecommendations = {
+  "أريد أساسًا قويًا": { title: "مسار أساسيات التصميم", description: "ابدأ بعين ترى التكوين واللون والهرمية قبل أن تختار أي أداة.", href: "#foundations", color: "sun" },
+  "أريد بناء هوية": { title: "مسار الهوية البصرية", description: "حوّل أفكارك إلى نظام بصري متماسك يصلح للعلامات والمنتجات.", href: "#tracks", color: "coral" },
+  "أريد تصميمًا رقميًا": { title: "مسار التصميم الرقمي", description: "صمّم واجهات ومحتوى رقميًا له هدف وإيقاع وشخصية واضحة.", href: "#tracks", color: "mint" },
+};
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [lessonFilter, setLessonFilter] = useState<"all" | "new" | "popular">("all");
+  const [advisorOpen, setAdvisorOpen] = useState(false);
+  const [advisorStep, setAdvisorStep] = useState(0);
+  const [advisorAnswers, setAdvisorAnswers] = useState<string[]>([]);
 
   const filteredLessons = useMemo(() => {
     return lessons.filter((lesson) => {
@@ -118,6 +134,14 @@ export default function Home() {
     toast.success("أهلًا بك في أكاديمية التصميم الجرافيكي — اختر مسارك وابدأ أول تمرين.");
   };
   const handlePlaceholder = (message: string) => toast(message);
+  const advisorComplete = advisorAnswers.length === advisorQuestions.length;
+  const advisorResult = advisorComplete ? advisorRecommendations[advisorAnswers[0] as keyof typeof advisorRecommendations] : null;
+  const handleAdvisorAnswer = (answer: string) => {
+    const nextAnswers = [...advisorAnswers, answer];
+    setAdvisorAnswers(nextAnswers);
+    if (advisorStep < advisorQuestions.length - 1) setAdvisorStep((step) => step + 1);
+  };
+  const resetAdvisor = () => { setAdvisorStep(0); setAdvisorAnswers([]); };
 
   return (
     <main dir="rtl" className="midad-page">
@@ -210,6 +234,16 @@ export default function Home() {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section id="advisor" className={`advisor-section section-shell ${advisorOpen ? "is-open" : ""}`}>
+        <div className="advisor-intro"><span className="advisor-orbit"><Sparkles size={20} /></span><span className="section-kicker">/ لا تعرف من أين تبدأ؟</span><h2>مستشارك<br /><span>يفهم فضولك.</span></h2><p>أجب عن ثلاثة أسئلة سريعة، وسنقترح عليك المسار الأقرب لاهتماماتك ومستواك.</p><button className="primary-button" onClick={() => { setAdvisorOpen(true); resetAdvisor(); }}>اكتشف مسارك <ArrowLeft size={17} /></button></div>
+        <div className="advisor-panel" aria-live="polite">
+          <div className="advisor-panel__header"><span>مستشار المسارات</span><span>{advisorResult ? "اكتمل الاختيار" : `0${advisorStep + 1} / 03`}</span></div>
+          {!advisorOpen && <div className="advisor-panel__teaser"><span>ثلاث خطوات فقط</span><strong>لنصنع بداية تشبهك.</strong><div className="advisor-progress"><i /><i /><i /></div></div>}
+          {advisorOpen && !advisorResult && <div className="advisor-question"><span className="advisor-question__eyebrow">السؤال {advisorStep + 1} من {advisorQuestions.length}</span><h3>{advisorQuestions[advisorStep].label}</h3><div className="advisor-options">{advisorQuestions[advisorStep].options.map((option) => <button key={option} onClick={() => handleAdvisorAnswer(option)}>{option}<ArrowUpLeft size={16} /></button>)}</div></div>}
+          {advisorOpen && advisorResult && <div className="advisor-result"><span className={`advisor-result__badge advisor-result__badge--${advisorResult.color}`}><Star size={15} fill="currentColor" /> اقتراحنا لك</span><h3>{advisorResult.title}</h3><p>{advisorResult.description}</p><div className="advisor-result__actions"><a className="primary-button" href={advisorResult.href}>ابدأ الاستكشاف <ArrowLeft size={16} /></a><button className="advisor-restart" onClick={resetAdvisor}>أعد الاختبار</button></div></div>}
         </div>
       </section>
 
