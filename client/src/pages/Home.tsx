@@ -61,7 +61,7 @@ const lessons = [
 const navItems = [
   { label: "المسارات", href: "#tracks" },
   { label: "الدروس", href: "#lessons" },
-  { label: "عن مِداد", href: "#about" },
+  { label: "عن أكاديمية التصميم الجرافيكي", href: "#about" },
 ];
 
 export default function Home() {
@@ -81,7 +81,7 @@ export default function Home() {
   const closeMenu = () => setMenuOpen(false);
   const handleStart = () => {
     document.querySelector("#tracks")?.scrollIntoView({ behavior: "smooth" });
-    toast.success("أهلًا بك في مِداد — اختر مسارك وابدأ أول تمرين.");
+    toast.success("أهلًا بك في أكاديمية التصميم الجرافيكي — اختر مسارك وابدأ أول تمرين.");
   };
   const handlePlaceholder = (message: string) => toast(message);
 
@@ -96,9 +96,9 @@ export default function Home() {
       </div>
 
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="مِداد، الصفحة الرئيسية">
+        <a className="brand" href="#top" aria-label="أكاديمية التصميم الجرافيكي، الصفحة الرئيسية">
           <span className="brand__mark">م</span>
-          <span className="brand__name">مِداد</span>
+          <span className="brand__name">أكاديمية التصميم الجرافيكي</span>
           <span className="brand__descriptor">استوديو التعلّم البصري</span>
         </a>
 
@@ -134,13 +134,13 @@ export default function Home() {
         <div className="hero-copy">
           <div className="eyebrow"><Sparkles size={15} /> مساحة للفضول، أدوات للإنجاز</div>
           <h1>صمّم <em>بصيرة.</em><br />اصنع أثرًا.</h1>
-          <p className="hero-lede">مِداد أكاديمية عربية تعلّمك التصميم الجرافيكي بطريقة عملية، ذكية، وممتعة — من أول فكرة إلى عمل تفتخر به.</p>
+          <p className="hero-lede">أكاديمية التصميم الجرافيكي أكاديمية عربية تعلّمك التصميم الجرافيكي بطريقة عملية، ذكية، وممتعة — من أول فكرة إلى عمل تفتخر به.</p>
           <div className="hero-actions">
             <button className="primary-button hero-button" onClick={handleStart}>استكشف المسارات <ArrowLeft size={18} /></button>
             <button className="play-button" onClick={() => handlePlaceholder("فيديو التعريف سيصل قريبًا — جهّز فضولك.")}><span className="play-button__icon"><Play size={15} fill="currentColor" /></span> شاهد كيف نعلّم</button>
           </div>
           <div className="hero-proof">
-            <div className="avatar-stack" aria-label="أعضاء مجتمع مِداد"><span>ن</span><span>س</span><span>ر</span><span className="avatar-more">+٢</span></div>
+            <div className="avatar-stack" aria-label="أعضاء مجتمع أكاديمية التصميم الجرافيكي"><span>ن</span><span>س</span><span>ر</span><span className="avatar-more">+٢</span></div>
             <div><strong>+٢٬٤٠٠</strong><span>مصمم يتعلّم معنا الآن</span></div>
           </div>
         </div>
@@ -156,7 +156,7 @@ export default function Home() {
         <div className="hero-index">01 <span>/</span> 04</div>
       </section>
 
-      <section className="manifesto-strip" aria-label="قيم مِداد">
+      <section className="manifesto-strip" aria-label="قيم أكاديمية التصميم الجرافيكي">
         <span>ملاحظة</span><p>التصميم ليس زرًّا تضغطه. إنه طريقة جديدة لرؤية العالم.</p><span>↗</span>
       </section>
 
@@ -181,7 +181,7 @@ export default function Home() {
 
       <section id="lessons" className="lessons-section section-shell">
         <div className="section-heading section-heading--lessons">
-          <div><span className="section-kicker">/ مكتبة مِداد</span><h2>دروس قصيرة.<br /><span>أثر طويل.</span></h2></div>
+          <div><span className="section-kicker">/ مكتبة أكاديمية التصميم الجرافيكي</span><h2>دروس قصيرة.<br /><span>أثر طويل.</span></h2></div>
           <div className="lesson-filters" role="tablist" aria-label="فلترة الدروس">
             {[{ id: "all", label: "الكل" }, { id: "new", label: "الأحدث" }, { id: "popular", label: "الأكثر مشاهدة" }].map((filter) => (
               <button key={filter.id} className={lessonFilter === filter.id ? "is-active" : ""} onClick={() => setLessonFilter(filter.id as typeof lessonFilter)}>{filter.label}</button>
@@ -206,16 +206,16 @@ export default function Home() {
       </section>
 
       <section id="about" className="about-section section-shell">
-        <div className="about-visual"><div className="about-frame"><img src={workshopImage} alt="مساحة عمل إبداعية داخل استوديو مِداد" /></div><div className="about-caption"><span>استوديو مِداد</span><span>القاهرة · عمّان · كل مكان</span></div></div>
-        <div className="about-copy"><span className="section-kicker">/ لماذا مِداد؟</span><h2>لأن أفضل<br /><span>التصاميم</span><br />تبدأ من سؤال.</h2><p>نؤمن أن تعلّم التصميم لا يحتاج إلى ضجيج. يحتاج إلى عين منتبهة، سؤال جيد، ومجتمع يشجّعك على المحاولة مرة أخرى.</p><div className="about-points"><div><Check size={15} /><span>تطبيق عملي، لا محاضرات طويلة</span></div><div><Check size={15} /><span>أمثلة من الثقافة البصرية العربية</span></div><div><Check size={15} /><span>مساحة آمنة لتجريب أفكارك</span></div></div><button className="underlined-link" onClick={() => handlePlaceholder("قصة مِداد ستُحكى هنا قريبًا.")}>اقرأ قصتنا <ArrowLeft size={16} /></button></div>
+        <div className="about-visual"><div className="about-frame"><img src={workshopImage} alt="مساحة عمل إبداعية داخل استوديو أكاديمية التصميم الجرافيكي" /></div><div className="about-caption"><span>استوديو أكاديمية التصميم الجرافيكي</span><span>القاهرة · عمّان · كل مكان</span></div></div>
+        <div className="about-copy"><span className="section-kicker">/ لماذا أكاديمية التصميم الجرافيكي؟</span><h2>لأن أفضل<br /><span>التصاميم</span><br />تبدأ من سؤال.</h2><p>نؤمن أن تعلّم التصميم لا يحتاج إلى ضجيج. يحتاج إلى عين منتبهة، سؤال جيد، ومجتمع يشجّعك على المحاولة مرة أخرى.</p><div className="about-points"><div><Check size={15} /><span>تطبيق عملي، لا محاضرات طويلة</span></div><div><Check size={15} /><span>أمثلة من الثقافة البصرية العربية</span></div><div><Check size={15} /><span>مساحة آمنة لتجريب أفكارك</span></div></div><button className="underlined-link" onClick={() => handlePlaceholder("قصة أكاديمية التصميم الجرافيكي ستُحكى هنا قريبًا.")}>اقرأ قصتنا <ArrowLeft size={16} /></button></div>
       </section>
 
       <section id="join" className="join-section section-shell">
         <div className="join-deco join-deco--one">م</div><div className="join-deco join-deco--two">✳</div>
-        <div className="join-content"><span className="section-kicker section-kicker--light">/ جاهز تبدأ؟</span><h2>فكرتك تستحق<br /><em>مساحة.</em></h2><p>انضم إلى قائمة الانتظار واحصل على أول درس مجاني عند إطلاق مِداد.</p><button className="light-button" onClick={() => toast.success("تم تسجيل اهتمامك! سنلتقي قريبًا في مِداد.")}>انضم إلى مِداد <ArrowLeft size={17} /></button></div>
+        <div className="join-content"><span className="section-kicker section-kicker--light">/ جاهز تبدأ؟</span><h2>فكرتك تستحق<br /><em>مساحة.</em></h2><p>انضم إلى قائمة الانتظار واحصل على أول درس مجاني عند إطلاق أكاديمية التصميم الجرافيكي.</p><button className="light-button" onClick={() => toast.success("تم تسجيل اهتمامك! سنلتقي قريبًا في أكاديمية التصميم الجرافيكي.")}>انضم إلى أكاديمية التصميم الجرافيكي <ArrowLeft size={17} /></button></div>
       </section>
 
-      <footer className="site-footer"><div className="footer-brand"><span className="brand__mark">م</span><strong>مِداد</strong><span>تعلم، لاحظ، اصنع.</span></div><div className="footer-links"><a href="#tracks">المسارات</a><a href="#lessons">الدروس</a><a href="#about">عن مِداد</a><a href="#join">تواصل معنا</a></div><div className="footer-social"><button aria-label="انستغرام" onClick={() => handlePlaceholder("تابعنا على إنستغرام قريبًا.")}><Instagram size={17} /></button><button aria-label="يوتيوب" onClick={() => handlePlaceholder("قناة مِداد ستنطلق قريبًا.")}><Youtube size={17} /></button><span>© ٢٠٢٦ مِداد</span></div></footer>
+      <footer className="site-footer"><div className="footer-brand"><span className="brand__mark">م</span><strong>أكاديمية التصميم الجرافيكي</strong><span>تعلم، لاحظ، اصنع.</span></div><div className="footer-links"><a href="#tracks">المسارات</a><a href="#lessons">الدروس</a><a href="#about">عن أكاديمية التصميم الجرافيكي</a><a href="#join">تواصل معنا</a></div><div className="footer-social"><button aria-label="انستغرام" onClick={() => handlePlaceholder("تابعنا على إنستغرام قريبًا.")}><Instagram size={17} /></button><button aria-label="يوتيوب" onClick={() => handlePlaceholder("قناة أكاديمية التصميم الجرافيكي ستنطلق قريبًا.")}><Youtube size={17} /></button><span>© ٢٠٢٦ أكاديمية التصميم الجرافيكي</span></div></footer>
     </main>
   );
 }
