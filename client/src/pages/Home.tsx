@@ -68,8 +68,30 @@ const softwarePrograms = [
   { number: "07", name: "آفتر إفيكت", english: "After Effects", description: "اصنع الحركة والمؤثرات بثقة.", color: "cyan" },
 ];
 
+const foundationLessons = [
+  {
+    number: "01",
+    title: "أساسيات التصميم الجرافيكي",
+    eyebrow: "ابدأ من الصورة الكبيرة",
+    description: "افهم التكوين، الهرمية، التوازن، المحاذاة، والفراغ لتصنع تصميمًا واضحًا ومقنعًا.",
+    topics: ["التكوين البصري", "الهرمية والمحاذاة", "الفراغ والتوازن"],
+    duration: "8 دروس · 2 ساعة",
+    color: "yellow",
+  },
+  {
+    number: "02",
+    title: "نظريات الألوان",
+    eyebrow: "اجعل اللون يتحدث",
+    description: "استخدم دائرة الألوان، التباين، والانسجام لبناء لوحات تعبّر عن الفكرة والإحساس.",
+    topics: ["دائرة الألوان", "التباين والانسجام", "سيكولوجية اللون"],
+    duration: "6 دروس · 1.5 ساعة",
+    color: "coral",
+  },
+];
+
 const navItems = [
   { label: "المسارات", href: "#tracks" },
+  { label: "الأساسيات", href: "#foundations" },
   { label: "البرامج", href: "#software" },
   { label: "الدروس", href: "#lessons" },
   { label: "عن أكاديمية التصميم الجرافيكي", href: "#about" },
@@ -201,6 +223,21 @@ export default function Home() {
               <div className="software-card__top"><span>{program.number}</span><span className="software-card__dot" /></div>
               <div className="software-card__body"><small>{program.english}</small><h3>{program.name}</h3><p>{program.description}</p></div>
               <button className="software-card__link" onClick={() => handlePlaceholder(`دروس ${program.name} ستتوفر قريبًا داخل أكاديمية التصميم الجرافيكي.`)}>ابدأ الدروس <ArrowUpLeft size={17} /></button>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="foundations" className="foundations-section section-shell">
+        <div className="section-heading foundations-heading">
+          <div><span className="section-kicker">/ قبل الأدوات، تعلّم الأساس</span><h2>عينك هي<br /><span>أهم أداة.</span></h2></div>
+          <div className="section-heading__aside"><p>دروسان تأسيسيان يضعان بين يديك القواعد التي تجعل أي برنامج أسهل، وأي فكرة أوضح.</p><a href="#lessons">استكشف كل الدروس <ArrowLeft size={16} /></a></div>
+        </div>
+        <div className="foundations-grid">
+          {foundationLessons.map((lesson) => (
+            <article className={`foundation-card foundation-card--${lesson.color}`} key={lesson.number}>
+              <div className="foundation-card__visual"><span className="foundation-card__number">{lesson.number}</span><div className="foundation-shape foundation-shape--one" /><div className="foundation-shape foundation-shape--two" /><span className="foundation-card__label">درس تأسيسي</span></div>
+              <div className="foundation-card__content"><span className="section-kicker">{lesson.eyebrow}</span><h3>{lesson.title}</h3><p>{lesson.description}</p><div className="foundation-topics">{lesson.topics.map((topic) => <span key={topic}>{topic}</span>)}</div><div className="foundation-card__footer"><span>{lesson.duration}</span><button onClick={() => handlePlaceholder(`سيبدأ درس «${lesson.title}» قريبًا.`)}>ابدأ الدرس <ArrowUpLeft size={17} /></button></div></div>
             </article>
           ))}
         </div>
