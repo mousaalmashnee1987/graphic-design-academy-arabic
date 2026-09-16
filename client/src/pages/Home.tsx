@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import {
   ArrowLeft,
   ArrowUpLeft,
+  BookOpen,
   Check,
   ChevronDown,
   Clock3,
@@ -24,6 +25,11 @@ import {
 const assetBase = import.meta.env.BASE_URL;
 const heroImage = `${assetBase}assets/midad-hero.jpg`;
 const workshopImage = `${assetBase}assets/midad-workshop.jpg`;
+const exerciseImages = {
+  composition: `${assetBase}assets/exercises/composition.jpg`,
+  color: `${assetBase}assets/exercises/color.jpg`,
+  typography: `${assetBase}assets/exercises/typography.jpg`,
+};
 
 const tracks = [
   {
@@ -90,9 +96,27 @@ const foundationLessons = [
   },
 ];
 
+const visualExercises = [
+  { number: "01", title: "ملصق من ثلاثة أشكال", category: "تكوين بصري", duration: "25 دقيقة", description: "حوّل دائرة ومربعًا وخطًا إلى ملصق يملك إيقاعًا واضحًا.", image: exerciseImages.composition, color: "navy" },
+  { number: "02", title: "لوحة لون واحدة", category: "نظرية الألوان", duration: "20 دقيقة", description: "ابنِ لوحة إحساس كاملة من لون أساسي وتدرجاته فقط.", image: exerciseImages.color, color: "yellow" },
+  { number: "03", title: "حروف لها شخصية", category: "تايبوجرافي", duration: "30 دقيقة", description: "اكتشف كيف يمكن للشكل والإيقاع أن يقولا أكثر من الكلمات.", image: exerciseImages.typography, color: "coral" },
+];
+
+const programBooks = [
+  { number: "01", title: "الفوتوشوب من الفكرة إلى الصورة", program: "Photoshop", meta: "52 صفحة · 7 فصول", color: "blue" },
+  { number: "02", title: "الإليستريتور: ارسم نظامك", program: "Illustrator", meta: "46 صفحة · 6 فصول", color: "orange" },
+  { number: "03", title: "الإنديزاين وترتيب الحكاية", program: "InDesign", meta: "44 صفحة · 5 فصول", color: "pink" },
+  { number: "04", title: "كوريل درو للعمل اليومي", program: "CorelDRAW", meta: "38 صفحة · 5 فصول", color: "green" },
+  { number: "05", title: "أنيميت: الفكرة تتحرّك", program: "Animate", meta: "50 صفحة · 6 فصول", color: "purple" },
+  { number: "06", title: "بريمير وإيقاع القصة", program: "Premiere Pro", meta: "48 صفحة · 6 فصول", color: "violet" },
+  { number: "07", title: "آفتر إفيكت وصناعة الأثر", program: "After Effects", meta: "56 صفحة · 7 فصول", color: "cyan" },
+];
+
 const navItems = [
   { label: "المسارات", href: "#tracks" },
   { label: "المستشار", href: "#advisor" },
+  { label: "التمارين", href: "#exercises" },
+  { label: "الكتب", href: "#books" },
   { label: "الأساسيات", href: "#foundations" },
   { label: "البرامج", href: "#software" },
   { label: "الدروس", href: "#lessons" },
@@ -273,6 +297,36 @@ export default function Home() {
             <article className={`foundation-card foundation-card--${lesson.color}`} key={lesson.number}>
               <div className="foundation-card__visual"><span className="foundation-card__number">{lesson.number}</span><div className="foundation-shape foundation-shape--one" /><div className="foundation-shape foundation-shape--two" /><span className="foundation-card__label">درس تأسيسي</span></div>
               <div className="foundation-card__content"><span className="section-kicker">{lesson.eyebrow}</span><h3>{lesson.title}</h3><p>{lesson.description}</p><div className="foundation-topics">{lesson.topics.map((topic) => <span key={topic}>{topic}</span>)}</div><div className="foundation-card__footer"><span>{lesson.duration}</span><button onClick={() => handlePlaceholder(`سيبدأ درس «${lesson.title}» قريبًا.`)}>ابدأ الدرس <ArrowUpLeft size={17} /></button></div></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="exercises" className="exercises-section section-shell">
+        <div className="section-heading exercises-heading">
+          <div><span className="section-kicker">/ تعلّم بيديك</span><h2>تمارين مصوّرة.<br /><span>نتائج تُرى.</span></h2></div>
+          <div className="section-heading__aside"><p>افتح الصورة، اقرأ التحدي، ثم اصنع نسختك. تمارين قصيرة تساعدك على تحويل القاعدة إلى عادة.</p><span className="exercise-note"><Sparkles size={14} /> كل تمرين يبدأ بملاحظة</span></div>
+        </div>
+        <div className="exercise-grid">
+          {visualExercises.map((exercise) => (
+            <article className={`exercise-card exercise-card--${exercise.color}`} key={exercise.number}>
+              <div className="exercise-card__image"><img src={exercise.image} alt={`تمرين مصور عن ${exercise.category}`} /><span>{exercise.number}</span><button aria-label={`عرض تمرين ${exercise.title}`} onClick={() => handlePlaceholder(`تمرين «${exercise.title}» سيُفتح قريبًا.`)}><ArrowUpLeft size={17} /></button></div>
+              <div className="exercise-card__body"><div className="exercise-card__meta"><span>{exercise.category}</span><span>{exercise.duration}</span></div><h3>{exercise.title}</h3><p>{exercise.description}</p><button className="exercise-card__link" onClick={() => handlePlaceholder(`حمّل ورقة تمرين «${exercise.title}» قريبًا.`)}>افتح ورقة التمرين <ArrowLeft size={15} /></button></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="books" className="books-section section-shell">
+        <div className="section-heading books-heading">
+          <div><span className="section-kicker">/ مكتبة الأدوات</span><h2>كتب تشبه<br /><span>البرنامج.</span></h2></div>
+          <div className="section-heading__aside"><p>مراجع عملية مصممة لكل برنامج داخل الأكاديمية: شرح بصري، اختصارات مهمة، ومشروع صغير في كل فصل.</p><span className="books-count"><BookOpen size={16} /> ٧ كتب عملية</span></div>
+        </div>
+        <div className="books-grid">
+          {programBooks.map((book) => (
+            <article className={`book-card book-card--${book.color}`} key={book.program}>
+              <div className="book-cover"><span className="book-cover__number">{book.number}</span><BookOpen size={17} /><small>{book.program}</small><strong>{book.title}</strong><span className="book-cover__line" /></div>
+              <div className="book-card__info"><span>{book.meta}</span><button onClick={() => handlePlaceholder(`كتاب «${book.title}» سيكون متاحًا للقراءة قريبًا.`)}>تصفّح الكتاب <ArrowUpLeft size={16} /></button></div>
             </article>
           ))}
         </div>
