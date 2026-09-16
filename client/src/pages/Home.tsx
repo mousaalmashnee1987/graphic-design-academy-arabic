@@ -58,8 +58,19 @@ const lessons = [
   { title: "لوحة ألوان تبني الإحساس", tag: "لون", time: "15 د", type: "new" },
 ];
 
+const softwarePrograms = [
+  { number: "01", name: "فوتوشوب", english: "Photoshop", description: "من أول طبقة إلى صورة تحكي قصة.", color: "blue" },
+  { number: "02", name: "إليستريتور", english: "Illustrator", description: "ارسم هويتك بدقة ومرونة لا نهائية.", color: "orange" },
+  { number: "03", name: "إنديزاين", english: "InDesign", description: "صمّم الصفحات التي تُقرأ وتُحفظ.", color: "pink" },
+  { number: "04", name: "كوريل درو", english: "CorelDRAW", description: "أدوات عملية للطباعة والإنتاج اليومي.", color: "green" },
+  { number: "05", name: "أنيميت", english: "Animate", description: "امنح أفكارك حركة وشخصية.", color: "purple" },
+  { number: "06", name: "بريمير", english: "Premiere Pro", description: "احكِ القصة بإيقاع يترك أثرًا.", color: "violet" },
+  { number: "07", name: "آفتر إفيكت", english: "After Effects", description: "اصنع الحركة والمؤثرات بثقة.", color: "cyan" },
+];
+
 const navItems = [
   { label: "المسارات", href: "#tracks" },
+  { label: "البرامج", href: "#software" },
   { label: "الدروس", href: "#lessons" },
   { label: "عن أكاديمية التصميم الجرافيكي", href: "#about" },
 ];
@@ -176,6 +187,22 @@ export default function Home() {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section id="software" className="software-section section-shell">
+        <div className="section-heading software-heading">
+          <div><span className="section-kicker">/ تعلّم الأدوات التي تصنع الفرق</span><h2>برنامج واحد.<br /><span>احتمالات كثيرة.</span></h2></div>
+          <div className="section-heading__aside"><p>دروس منفصلة وعملية لكل برنامج، من الواجهة الأولى إلى مشروع يمكنك إضافته إلى معرض أعمالك.</p><span className="software-count"><strong>٧</strong> برامج إبداعية</span></div>
+        </div>
+        <div className="software-grid">
+          {softwarePrograms.map((program) => (
+            <article className={`software-card software-card--${program.color}`} key={program.english}>
+              <div className="software-card__top"><span>{program.number}</span><span className="software-card__dot" /></div>
+              <div className="software-card__body"><small>{program.english}</small><h3>{program.name}</h3><p>{program.description}</p></div>
+              <button className="software-card__link" onClick={() => handlePlaceholder(`دروس ${program.name} ستتوفر قريبًا داخل أكاديمية التصميم الجرافيكي.`)}>ابدأ الدروس <ArrowUpLeft size={17} /></button>
+            </article>
+          ))}
         </div>
       </section>
 

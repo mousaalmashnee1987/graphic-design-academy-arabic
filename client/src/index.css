@@ -134,3 +134,24 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+/* Software academy */
+.software-section { padding: 0 0 124px; }
+.software-heading { margin-bottom: 40px; }
+.software-count { display: inline-flex; align-items: center; gap: 8px; color: #758092; font-size: 11px; font-weight: 700; }
+.software-count strong { color: #ee6e51; font-family: "IBM Plex Mono", monospace; font-size: 24px; }
+.software-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+.software-card { position: relative; display: flex; flex-direction: column; min-height: 237px; padding: 18px 17px 15px; overflow: hidden; border: 1px solid rgba(13,34,65,.1); background: #fffdf8; color: #0d2241; transition: transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease; }
+.software-card::before { content: ""; position: absolute; top: -32px; left: -21px; width: 100px; height: 100px; border-radius: 50%; background: var(--software-accent); opacity: .14; }
+.software-card:hover { transform: translateY(-6px); box-shadow: 8px 10px 0 rgba(13,34,65,.08); }
+.software-card--blue { --software-accent: #4b78df; }.software-card--orange { --software-accent: #f27b45; }.software-card--pink { --software-accent: #e34d6d; }.software-card--green { --software-accent: #49a879; }.software-card--purple { --software-accent: #8d65d3; }.software-card--violet { --software-accent: #6f67c8; }.software-card--cyan { --software-accent: #36a8c1; }
+.software-card__top { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; color: #9ca4ae; font-family: "IBM Plex Mono", monospace; font-size: 10px; }
+.software-card__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--software-accent); }
+.software-card__body { position: relative; z-index: 1; margin-top: auto; }
+.software-card__body small { color: var(--software-accent); font-family: "IBM Plex Mono", monospace; font-size: 9px; font-weight: 600; }
+.software-card h3 { margin: 8px 0 7px; font-family: "Noto Kufi Arabic", sans-serif; font-size: 21px; font-weight: 900; letter-spacing: -.07em; }
+.software-card p { min-height: 35px; margin: 0; color: #758092; font-size: 10px; line-height: 1.8; }
+.software-card__link { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(13,34,65,.12); background: transparent; color: #0d2241; font-size: 10px; font-weight: 800; text-align: right; }
+.software-card__link svg { color: var(--software-accent); transition: transform .2s ease; }.software-card__link:hover svg { transform: translate(-3px, -3px); }
+@media (max-width: 900px) { .software-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 680px) { .software-section { padding-bottom: 85px; }.software-grid { grid-template-columns: 1fr; gap: 11px; }.software-card { min-height: 190px; }.software-card h3 { font-size: 20px; } }
